@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Website</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Pacifico&family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;600;800&display=swap');
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      min-height:100vh;
+      font-family:'Poppins',sans-serif;
+      background:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,.25), transparent 25%),
+      linear-gradient(120deg,#c9d474,#aebb61,#d6dd89);
+      overflow-x:hidden;
+      color:#321923;
+    }
+
+    .site{
+      max-width:980px;
+      margin:auto;
+      background:#fff5f7;
+      overflow:hidden;
+      box-shadow:0 30px 90px rgba(70,34,45,.35);
+    }
+
+    .top{
+      min-height:100vh;
+      position:relative;
+      background:#fff7f8;
+      padding-bottom:60px;
+    }
+
+    .hero-band{
+      background:#b8d276;
+      height:78px;
+      padding:15px 28px;
+      color:white;
+      text-align:right;
+      font-weight:800;
+      font-size:clamp(1.3rem,4vw,2.5rem);
+      letter-spacing:3px;
+      text-transform:uppercase;
+    }
+
+    .pink-strip{
+      height:28px;
+      background:#eac0d8;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:0 35px;
+      font-size:.72rem;
+      font-weight:700;
+      border-bottom:3px solid #b7d56e;
+    }
+
+    .tiny-btn{
+      border:none;
+      background:#d9eb8c;
+      padding:4px 12px;
+      font-size:.6rem;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .hero-content{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:30px;
+      padding:95px 55px 35px;
+      align-items:center;
+    }
+
+    .script-title{
+      font-family:'Pacifico',cursive;
+      font-size:clamp(2.2rem,6vw,4.7rem);
+      line-height:1.05;
+    }
+
+    .quote{
+      margin-top:35px;
+      max-width:440px;
+      font-size:.9rem;
+      line-height:1.8;
+      color:#593642;
+    }
+
+    .seal{
+      margin-top:28px;
+      width:90px;
+      height:90px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:repeating-conic-gradient(#ef7e55 0 10deg,#ffefdc 10deg 20deg);
+      animation:spin 9s linear infinite;
+      font-size:.65rem;
+      font-weight:800;
+      color:white;
+    }
+
+    @keyframes spin{
+      to{
+        transform:rotate(360deg);
+      }
+    }
+
+    /* PHOTO COLLAGE */
+
+    .photo-collage{
+      position:relative;
+      min-height:430px;
+    }
+
+    .photo-card{
+      position:absolute;
+      background:white;
+      padding:12px;
+      border-radius:8px;
+      box-shadow:0 16px 30px rgba(38,20,27,.18);
+      transition:.4s;
+      overflow:hidden;
+    }
+
+    .photo-card:hover{
+      transform:scale(1.08) rotate(0deg) !important;
+      z-index:10;
+    }
+
+    .photo-card img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius:5px;
+    }
+
+    .main-photo{
+      width:230px;
+      height:185px;
+      right:140px;
+      top:100px;
+      transform:rotate(-5deg);
+      border:10px solid #879195;
+    }
+
+    .small-photo{
+      width:115px;
+      height:150px;
+      right:45px;
+      top:30px;
+      transform:rotate(9deg);
+    }
+
+    .strip{
+      width:90px;
+      height:250px;
+      right:10px;
+      top:175px;
+      transform:rotate(10deg);
+    }
+
+    .sticky-note{
+      position:absolute;
+      top:30px;
+      left:30px;
+      background:#fff1ca;
+      padding:18px 22px;
+      transform:rotate(-8deg);
+      font-family:'Pacifico',cursive;
+      color:#a25b35;
+      border-radius:4px;
+    }
+
+    .nav-line{
+      background:#dce5ca;
+      border-top:2px solid #9eb373;
+      border-bottom:2px solid #9eb373;
+      padding:12px 25px;
+      font-size:.72rem;
+      text-align:center;
+    }
+
+    /* SECOND SECTION */
+
+    .maroon-section{
+      background:#721f39;
+      min-height:100vh;
+      padding:58px 40px 80px;
+      color:white;
+    }
+
+    .story{
+      text-align:center;
+      font-family:'Playfair Display',serif;
+      font-size:clamp(1.2rem,3vw,2rem);
+      line-height:1.6;
+      margin-bottom:55px;
+    }
+
+    .story span{
+      font-family:'Pacifico',cursive;
+      color:#f7d2a9;
+    }
+
+    .bestie-card{
+      max-width:760px;
+      margin:auto;
+      background:#fffdfb;
+      color:#33202a;
+      padding:34px;
+      display:grid;
+      grid-template-columns:270px 1fr;
+      gap:35px;
+      border-radius:6px;
+    }
+
+    .portrait{
+      height:340px;
+      border:10px solid #24242a;
+      border-radius:22px;
+      overflow:hidden;
+      transform:rotate(-8deg);
+      position:relative;
+    }
+
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
+
+    .profile h2{
+      font-family:'Playfair Display',serif;
+      font-size:2rem;
+      margin-bottom:22px;
+    }
+
+    .profile p{
+      font-size:.88rem;
+      line-height:1.8;
+      color:#573e48;
+    }
+
+    .pretty{
+      font-family:'Pacifico',cursive;
+      font-size:1.4rem;
+      margin:20px 0;
+      color:#7a4354;
+    }
+
+    .ratings{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:25px;
+    }
+
+    .rate{
+      background:#f4c9df;
+      text-align:center;
+      padding:15px 8px;
+      border-radius:7px;
+      font-weight:800;
+      color:#6b1731;
+    }
+
+    .forever{
+      font-family:'Anton',sans-serif;
+      color:#c9d8ff;
+      font-size:clamp(3rem,10vw,8.5rem);
+      text-transform:uppercase;
+      margin-top:65px;
+      text-align:center;
+    }
+
+    /* MEMORY SECTION */
+
+    .memory-section{
+      background:#f9f1e4;
+      padding:80px 45px;
+    }
+
+    .memory-title{
+      font-family:'Pacifico',cursive;
+      font-size:clamp(2.5rem,7vw,5rem);
+      text-align:center;
+      margin-bottom:45px;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .gallery-card{
+      background:white;
+      padding:12px 12px 42px;
+      border-radius:6px;
+      box-shadow:0 14px 25px rgba(55,30,38,.14);
+      transition:.4s;
+    }
+
+    .gallery-card:hover{
+      transform:scale(1.05);
+    }
+
+    .pic{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+      border-radius:4px;
+      margin-bottom:12px;
+    }
+
+    .gallery-card p{
+      text-align:center;
+      font-family:'Pacifico',cursive;
+      color:#7d3550;
+    }
+
+    /* FINAL SECTION */
+
+    .final{
+      min-height:80vh;
+      background:#721f39;
+      color:#fff4f1;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:55px 25px;
+    }
+
+    .final h1{
+      font-family:'Pacifico',cursive;
+      font-size:clamp(3rem,9vw,7rem);
+      margin-bottom:25px;
+    }
+
+    .final p{
+      max-width:720px;
+      margin:auto;
+      font-family:'Playfair Display',serif;
+      font-size:1.4rem;
+      line-height:1.8;
+    }
+
+    /* CONFETTI */
+
+    .confetti{
+      position:fixed;
+      width:10px;
+      height:18px;
+      top:-30px;
+      animation:fall linear infinite;
+      z-index:99;
+      opacity:.9;
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+      }
+    }
+
+    .music-btn{
+      position:fixed;
+      right:22px;
+      bottom:22px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      border:none;
+      background:#fff5fb;
+      color:#721f39;
+      font-size:1.5rem;
+      cursor:pointer;
+      z-index:100;
+    }
+
+    @media(max-width:800px){
+
+      .hero-content,
+      .bestie-card{
+        grid-template-columns:1fr;
+      }
+
+      .gallery{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:480px){
+
+      .gallery{
+        grid-template-columns:1fr;
+      }
+
+      .hero-content{
+        padding:75px 25px 25px;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+<button class="music-btn" onclick="celebrate()">🎉</button>
+
+<main class="site">
+
+<section class="top">
+
+<div class="hero-band">Happiieesstt Birthday Nivii!
+</div>
+
+<div class="pink-strip">
+<span>Birthday!</span>
+<span>Celebrating my favorite person since day one</span>
+<button class="tiny-btn">scroll down</button>
+</div>
+
+<div class="hero-content">
+
+<div>
+
+<h1 class="script-title">
+the girl who proved<br>
+“soulmates” are real
+</h1>
+
+<p class="quote">
+A soulmate is a friend forever. The one person who makes ordinary days feel special, random talks feel magical, and every memory worth keeping.
+</p>
+
+<div class="seal">
+BESTIE<br>DAY
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- ADD YOUR PHOTOS HERE -->
+<!-- ========================= -->
+
+<div class="photo-collage">
+
+<div class="sticky-note">
+my fav human ♡
+</div>
+
+<div class="photo-card main-photo">
+<img src="photo_2026-05-05_22-42-58.jpg" alt="">
+</div>
+
+<div class="photo-card small-photo">
+<img src="photo_2026-05-05_22-41-36.jpg" alt="">
+</div>
+
+<div class="photo-card strip">
+<img src="photo_2026-05-06_18-20-08.jpg" alt="">
+</div>
+
+</div>
+
+</div>
+
+<div class="nav-line">
+Safe Space / Chosen Family / Secret Keeper / Forever Duo /
+</div>
+
+</section>
+
+<!-- SECOND SECTION -->
+
+<section class="maroon-section">
+
+<p class="story">
+You’re the <span>main character</span> in my favorite stories
+and <span>the soul</span> behind every memory.
+</p>
+
+<div class="bestie-card">
+
+<!-- ========================= -->
+<!-- ADD BIG PHOTO HERE -->
+<!-- ========================= -->
+
+<div class="portrait">
+<img src="photo_2026-05-06_20-08-19.jpg" alt="">
+</div>
+
+<div class="profile">
+
+<h2>Bestie Files</h2>
+
+<p>
+You are the person who knows my weirdest jokes and still stays laughing.
+Thank you for being my calm, my chaos, my comfort, and my forever favorite person.
+</p>
+
+<div class="pretty">
+pretty vibes, kind heart
+</div>
+
+<div class="ratings">
+
+<div class="rate">
+∞
+<small>memories</small>
+</div>
+
+<div class="rate">
+100%
+<small>loyalty</small>
+</div>
+
+<div class="rate">
+100/10
+<small>vibes</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="forever">
+Forever Favourite Person 
+</div>
+
+</section>
+
+<!-- MEMORY SECTION -->
+
+<section class="memory-section">
+
+<h2 class="memory-title">
+tiny memories, big feelings
+</h2>
+
+<div class="gallery">
+
+<!-- ========================= -->
+<!-- ADD MEMORY PHOTOS HERE -->
+<!-- ========================= -->
+
+<div class="gallery-card">
+<img src="photo_2026-05-05_22-42-27.jpg" class="pic">
+<p>Isko aana nahii chahiye tha pr bhii aa gaii</p>
+</div>
+
+<div class="gallery-card">
+<img src="photo_2026-05-06_18-19-53.jpg" class="pic">
+<p>Mgaya kuch or aaya kuch or</p>
+</div>
+
+<div class="gallery-card">
+<img src="photo_2026-05-06_18-20-01.jpg" class="pic">
+<p>Yaad h ye ethara se time leke tum log pta nahii koisi cmny ke liye test dene aaye the or tu anxiety m thii</p>
+</div>
+
+<div class="gallery-card">
+<img src="photo_2026-05-06_18-19-23.jpg" class="pic">
+<p>First time uno khela tha mene tere sath pr ek bhii baar nahii jita </p>
+</div>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<section class="final">
+
+<div>
+
+<h1>
+Happiieesstt Birthday!
+</h1>
+
+<p>
+You know, I realize I’ve hurt you a lot of times, and I genuinely hate that I did. But honestly,
+ my intentions were never to hurt you  sometimes I mess things up without meaning to, and I know that’s not an excuse. 
+ The truth is, you matter to me more than anyone else in this world. I care about you way more than I’m able to express sometimes.
+  And one thing I never want you to think is that I take you for granted or treat you lightly, 
+  because I don’t not even a little. You’re really important to me, more than you probably know
+</p>
+
+</div>
+
+</section>
+
+</main>
+
+<script>
+
+const colors=[
+'#ff7aa2',
+'#f7df7e',
+'#b7d66b',
+'#ffffff',
+'#c9d8ff',
+'#ffb36b'
+];
+
+function createConfetti(amount=80){
+
+for(let i=0;i<amount;i++){
+
+const piece=document.createElement('div');
+
+piece.className='confetti';
+
+piece.style.left=Math.random()*100+'vw';
+
+piece.style.background=
+colors[Math.floor(Math.random()*colors.length)];
+
+piece.style.animationDuration=
+Math.random()*3+3+'s';
+
+piece.style.animationDelay=
+Math.random()*4+'s';
+
+document.body.appendChild(piece);
+
+setTimeout(()=>{
+piece.remove();
+},8000);
+
+}
+
+}
+
+function celebrate(){
+createConfetti(120);
+}
+
+createConfetti(90);
+
+document.querySelector('.tiny-btn')
+.addEventListener('click',()=>{
+
+document.querySelector('.maroon-section')
+.scrollIntoView({
+behavior:'smooth'
+});
+
+});
+
+</script>
+
+</body>
+</html>
